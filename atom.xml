@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Walk step by step]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2014-10-02T08:56:45.815Z</updated>
+  <updated>2014-10-03T10:59:42.760Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <link href="http://yoursite.com/2014/10/02/2014-10-02-PM/"/>
     <id>http://yoursite.com/2014/10/02/2014-10-02-PM/</id>
     <published>2014-10-02T08:19:56.000Z</published>
-    <updated>2014-10-02T08:52:38.000Z</updated>
-    <content type="html"><![CDATA[<p>匆匆度过了四年，我感觉做过很多事，但回头看看才发现，自己并没有预想的那样，有很多值得骄傲的会议。在此，我用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>搭建了个人主页，想记录下过去几年的一些事，以慰藉虚度的光阴。</p>
+    <updated>2014-10-02T16:06:08.000Z</updated>
+    <content type="html"><![CDATA[<p>匆匆度过了四年，我感觉做过很多事，但回头看看才发现，自己并没有预想的那样，有很多值得骄傲的会议。在此，我用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>搭建了个人主页，想记录下过去几年的一些事，以慰藉虚度的光阴。<br><a id="more"></a></p>
 <h2 id="Quick_Start">Quick Start</h2>
 <h3 id="Create_a_new_post">Create a new post</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
@@ -41,7 +41,8 @@
 <p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>匆匆度过了四年，我感觉做过很多事，但回头看看才发现，自己并没有预想的那样，有很多值得骄傲的会议。在此，我用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>搭建了个人主页，想记录下过去几年的一些]]>
+    <![CDATA[<p>匆匆度过了四年，我感觉做过很多事，但回头看看才发现，自己并没有预想的那样，有很多值得骄傲的会议。在此，我用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>搭建了个人主页，想记录下过去几年的一些事，以慰藉虚度的光阴。<br>]]>
+    
     </summary>
     
   </entry>
