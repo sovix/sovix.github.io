@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[Sonix's Home]]></title>
-  <subtitle><![CDATA[Walk step by step]]></subtitle>
+  <subtitle><![CDATA[见证过去的岁月！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2014-10-03T10:59:42.760Z</updated>
+  <updated>2014-10-03T13:33:10.706Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,34 +16,20 @@
   
   <entry>
     <title><![CDATA[写在最前面]]></title>
-    <link href="http://yoursite.com/2014/10/02/2014-10-02-PM/"/>
-    <id>http://yoursite.com/2014/10/02/2014-10-02-PM/</id>
-    <published>2014-10-02T08:19:56.000Z</published>
-    <updated>2014-10-02T16:06:08.000Z</updated>
-    <content type="html"><![CDATA[<p>匆匆度过了四年，我感觉做过很多事，但回头看看才发现，自己并没有预想的那样，有很多值得骄傲的会议。在此，我用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>搭建了个人主页，想记录下过去几年的一些事，以慰藉虚度的光阴。<br><a id="more"></a></p>
-<h2 id="Quick_Start">Quick Start</h2>
-<h3 id="Create_a_new_post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3>
-<p>$$ \sum_{i=1}^N i $$</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <link href="http://yoursite.com/2014/10/03/Before-The-First/"/>
+    <id>http://yoursite.com/2014/10/03/Before-The-First/</id>
+    <published>2014-10-03T11:50:57.000Z</published>
+    <updated>2014-10-03T12:37:20.000Z</updated>
+    <content type="html"><![CDATA[<p>匆匆度过了四年，我感觉做过很多事，但回头看看才发现，自己并没有预想的那样，有很多值得骄傲的回忆。在此，我用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>搭建了个人主页，想记录下过去几年的一些事，以慰藉虚度的光阴。<br><a id="more"></a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>匆匆度过了四年，我感觉做过很多事，但回头看看才发现，自己并没有预想的那样，有很多值得骄傲的会议。在此，我用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>搭建了个人主页，想记录下过去几年的一些事，以慰藉虚度的光阴。<br>]]>
+    <![CDATA[<p>匆匆度过了四年，我感觉做过很多事，但回头看看才发现，自己并没有预想的那样，有很多值得骄傲的回忆。在此，我用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>搭建了个人主页，想记录下过去几年的一些事，以慰藉虚度的光阴。<br>]]>
     
     </summary>
+    
+      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="随笔" scheme="http://yoursite.com/categories/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
