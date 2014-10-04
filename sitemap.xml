@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://sovix.github.io/search/index.html</loc>
+    <lastmod>2014-10-04T06:38:20.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://sovix.github.io/tags/index.html</loc>
     <lastmod>2014-10-03T17:38:25.000Z</lastmod>
   </url>
