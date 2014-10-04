@@ -1,10 +1,10 @@
 
-  <!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   
-    <title>Archives: 2014/10 | Sonix&#39;s Home</title>
+    <title>Category: undefined | Sonix&#39;s Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="sjlxj">
@@ -69,67 +69,19 @@
 </div>
       </header>
       <div id="container">
-        
-
+          
 <div class="archive-title" >
-  <h2 class="archive-icon">2014/10</h2>
-  
-  <div class="archiveslist archive-float clearfix">
-   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">2014 年 10 月</a><span class="archive-list-count">1</span></li></ul>
- </div>
-  
+<h2 class="category-icon">分类</h2>
+
+<a data-src="/categories/write-anywhere/" href="#随笔" title="随笔">随笔<sup>1</sup></a>
+
 </div>
-<div id="main" class="archive-part clearfix">
-  <div id="archive-page">
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2014/10/03/Before-All/" title="写在最前面" itemprop="url">
-  
-
-    <time datetime="2014-10-03T14:41:50.000Z" itemprop="datePublished">2014-10-03</time>
-
-
-    <h1 itemprop="name">写在最前面</h1>
-
-  </a>
-</section>
-
-
-  </div>
+<div id="main" class="archive-part">
+<div class="all-list-box"></div>
 </div>
+
 
       </div>
-      <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> 我是sjlxj，目前是在读研究生。 <br/>
-			在这里，有我学习的经历和值得怀念的过去。不论悲伤或喜悦、后悔或满足，逝去的终不再回来，留下的只是记忆角落里的怅然。</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		
-		
-		
-		
-		
-		
-		
-	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/sovix/cactus" target="_blank" title="Cactus">Cactus</a> © 2014 
-		
-		<a href="http://sovix.github.io/about" target="_blank" title="sjlxj">sjlxj</a>
-		
-		</p>
-</div>
-</footer>
       <script src="/js/jquery-2.0.3.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){ 
@@ -180,6 +132,24 @@ $(document).ready(function(){
 
 
 
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var list    = $('.archive-title a'),
+      box     = $('.all-list-box'),
+      first   = $('.archive-title a:first-of-type');
+      box.load(first.attr('data-src').toString()+' #archive-page');
+      first.addClass('current');
+  list.each(function(){
+    $(this).click(function(){
+      var listSrc=$(this).attr('data-src').toString()+' #archive-page';
+      box.load(listSrc);
+      list.removeClass('current');
+      $(this).addClass('current');
+     });  
+    });
+  }); 
+</script>
 
 
 

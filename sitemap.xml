@@ -2,8 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2014/10/03/Before-The-First/</loc>
-    <lastmod>2014-10-03T12:37:20.000Z</lastmod>
+    <loc>http://sovix.github.io/tags/index.html</loc>
+    <lastmod>2014-10-03T17:38:25.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sovix.github.io/categories/index.html</loc>
+    <lastmod>2014-10-03T17:38:22.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sovix.github.io/about/index.html</loc>
+    <lastmod>2014-10-03T15:11:51.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sovix.github.io/2014/10/03/Before-All/</loc>
+    <lastmod>2014-10-03T14:41:50.000Z</lastmod>
   </url>
   
 </urlset>
