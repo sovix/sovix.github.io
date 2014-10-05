@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>写在最前面 | Sovix&#39;s Home</title>
+    <title>逻辑回归（原理） | Sovix&#39;s Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="sjlxj">
     
-    <meta name="description" content="匆匆度过了四年，我感觉做过很多事，但回头看看才发现，自己并没有预想的那样，有很多值得骄傲的回忆。在此，我用Hexo搭建了个人主页，想记录下过去几年的一些事，以慰藉虚度的光阴。">
+    <meta name="description" content="前几个月，由于要处理大批量数据，我专门重温了逻辑回归（Logistic Regression，LR）。虽然LR没有取得比较好的效果，我仍然觉得它的潜力巨大且应用前景广泛。作为广义线性分类器的一种，LR一直是实际应用中的“明星”。下面开始介绍LR原理和其实现过程。
+LR原理
+经典的线性回归分类器是\[">
     
     
     
@@ -75,14 +77,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/10/05/Before-All/" title="写在最前面" itemprop="url">写在最前面</a>
+      <a href="/2014/10/05/Logistic-Regression-I/" title="逻辑回归（原理）" itemprop="url">逻辑回归（原理）</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://sovix.github.io/about" title="sjlxj" target="_blank" itemprop="author">sjlxj</a>
 		
   <p class="article-time">
-    <time datetime="2014-10-05T09:51:41.000Z" itemprop="datePublished"> 发表于 2014-10-05</time>
+    <time datetime="2014-10-05T11:47:48.000Z" itemprop="datePublished"> 发表于 2014-10-05</time>
     
   </p>
 </header>
@@ -92,28 +94,30 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#机器学习"><span class="toc-number">1.</span> <span class="toc-text">机器学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux系统"><span class="toc-number">2.</span> <span class="toc-text">Linux系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束语"><span class="toc-number">3.</span> <span class="toc-text">结束语</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LR原理"><span class="toc-number">1.</span> <span class="toc-text">LR原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#梯度下降法"><span class="toc-number">2.</span> <span class="toc-text">梯度下降法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据归一化"><span class="toc-number">3.</span> <span class="toc-text">数据归一化</span></a></li></ol>
 		
 		</div>
 		
-		<p>匆匆度过了四年，我感觉做过很多事，但回头看看才发现，自己并没有预想的那样，有很多值得骄傲的回忆。在此，我用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>搭建了个人主页，想记录下过去几年的一些事，以慰藉虚度的光阴。<br><a id="more"></a></p>
-<h2 id="机器学习">机器学习</h2>
-<p>从研究生阶段，我才开始接触与机器学习相关的理论和方法。实际上，机器学习（或者模式识别、数据挖掘）并不是那么简单。我学过机器学习和模式识别专业课程。但是，第一次学完后，我对这门课程一点印象都没有；三年后，第二次学完，终于对常用的模型和方法有了深入的理解。不过，课程和实践之间还有遥远的距离。每次提到一种方法，我感觉都相当的了解，但在应用时，却不得不重头学起。学了忘，忘了又学，这样重复了许多次，我下定决心将自己学过的东西都记录下来。庸庸碌碌几年过去了，而我也只剩下这些回忆。</p>
-<p>博客里记录的机器学习模型和方法有以下几种：</p>
+		<p>前几个月，由于要处理大批量数据，我专门重温了逻辑回归（Logistic Regression，LR）。虽然LR没有取得比较好的效果，我仍然觉得它的潜力巨大且应用前景广泛。作为广义线性分类器的一种，LR一直是实际应用中的“明星”。下面开始介绍LR原理和其实现过程。</p>
+<h2 id="LR原理">LR原理</h2>
+<p>经典的线性回归分类器是<br>\[ y=\mathbf{w}^T \mathbf{x} + w_0 \]<br>对于数据集\( \{\mathbf{x}_i, t_i\}_{i=1}^N \)，其中类别\( t_i \in \{0, 1\} \)，那么LR分类器可以表示为<br>\[ y = f(\mathbf{x}) = g(\mathbf{w}^T\mathbf{x} + w_0) = \frac{1}{1 + \exp\{-(\mathbf{w}^T\mathbf{x} + w_0)\}} \]<br>其中\( g(\mathbf{z})=\frac{1}{1 + e^{-\mathbf{z}}} \)是sigmoid函数。则\( N \)对个样本，其似然函数（likelihood function）为<br>\[ L(\mathbf{w}) = \prod_{i=1}^N y_i^{t_i} (1 - y_i)^{1 - t_i} \]<br>其中\( y_i = f(\mathbf{x}_i) \)。那么我们得到的代价函数（cost function）为似然函数的负对数，再加上对系数的惩罚项，以避免过拟合<br>\[ J(\mathbf{w}) = -\frac{1}{N}\log L(\mathbf{w}) + \frac{\gamma}{2}\Vert\mathbf{w}\Vert^2 \]</p>
+<p>\[ J(\mathbf{w}) = -\frac{1}{N}\sum_{i=1}^N \lbrack t_i \log f(\mathbf{x}_i) + (1 - t_i) \log (1 - f(\mathbf{x}_i)) \rbrack + \frac{\gamma}{2}\sum_{j=1}^k w_j^2 \]<br>上式\( k \)为样本\( \mathbf{x} \)的维度。</p>
+<h2 id="梯度下降法">梯度下降法</h2>
+<p>当目标是最小化代价函数时，可采用梯度下降法（Gradient Descent algorithm）求取最优解。<br>（注：当目标是最小化目标函数（如代价函数）时，才可以采用梯度下降法；若目标是最大化目标函数（如似然函数）时，应采用梯度上升法。为了论述统一，推荐采用最小化的目标函数。）<br>对\( w_j \)求导数，得到代价函数的梯度（descent）为<br>\[ \frac{\partial J(\mathbf{w})}{\partial \mathbf{w}} = \frac{1}{N}\sum_{i=1}^N \lbrack f(\mathbf{x}_i) - y_i \rbrack \mathbf{x}_i + \gamma \mathbf{w}, \qquad j = 1,2,\dots,k \]</p>
+<p>\[ \frac{\partial J(\mathbf{w})}{\partial w_0} = \frac{1}{N}\sum_{i=1}^N \lbrack f(\mathbf{x}_i) - y_i \rbrack \]<br>梯度下降法的迭代公式为<br>\[ \beta^{\prime} = \beta - \alpha\frac{\partial}{\partial \beta} J(\beta) \]<br>将\( \mathbf{w} \)的梯度代入，可以得到梯度下降法求解LR的迭代公式<br>\[ \mathbf{w}^{\prime} = \mathbf{w} - \alpha\left\lbrace \frac{1}{N}\sum_{i=1}^N \lbrack f(\mathbf{x}_i) - y_i \rbrack \mathbf{x}_i + \gamma\mathbf{w} \right\rbrace, \qquad j=1,2,\dots,k \]</p>
+<p>\[ w_0^{\prime} = w_0 - \alpha\frac{1}{N}\sum_{i=1}^N \lbrack f(\mathbf{x}_i) - y_i \rbrack \]<br>根据上述迭代公式，可以求得LR分类器的参数。</p>
+<p>关于迭代公式向量化的过程，请参考<a href="http://blog.csdn.net/dongtingzhizi/article/details/15962797" target="_blank" rel="external">洞庭之子-Bing</a>的博客（从编写代码的角度来说，我觉得向量化很没必要；当然对于数学Geek，向量化表示的确要漂亮很多）。<br>除去不太主流的梯度下降法，求解LR分类器的方法包括随机梯度下降法（Stochastic Gradient Descent）、拟牛顿法（包括<a href="http://blog.csdn.net/itplus/article/details/21896981" target="_blank" rel="external">DFP</a>、<a href="http://blog.csdn.net/itplus/article/details/21897715" target="_blank" rel="external">BFGS算法</a> ）等。BFGS算法是当前使用最广泛的最优化求解方法，其原理和实现过程比较复杂。我自己曾试图实现BFGS算法，最终没能成功。直到现在，我还是不明白如何寻找最合适的步长。</p>
+<h2 id="数据归一化">数据归一化</h2>
+<p>在实际应用中，LR通常采用一种特别的数据预处理方式——数据归一化（data normalization）。这个技巧是<a href="http://www.cs.waikato.ac.nz/ml/weka/" target="_blank" rel="external">Weka</a>中LR模型所采用的，在做主成分分析（PCA，Primary Component Analysis）时经常用到。我利用几个基准数据集进行测试，发现这个技巧能极大地降低代价函数，且能更快达到终止条件（如\( \vert J(\mathbf{w}^{\prime}) - J(\mathbf{w}) \vert \leq \epsilon \)）。</p>
+<p>对于\( k \)维空间的样本数据\( \lbrace \mathbf{x}_i, t_i \rbrace_{i=1}^N \)，对每一维特征进行归一化，得到新的样本数据\( \lbrace\mathbf{z}_i, t_i \rbrace_{i=1}^N \)。归一化方式为<br>\[ z^j = \frac{x^j - \bar{x}^j}{\sigma^j}, \qquad j = 1,2,\dots,k \]<br>其中\( z^j \)是样本\( \mathbf{z} \)的第\( j \)维特征的值， \( \bar{x}^j \)是所有样本\( \lbrace\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_N \rbrace \)的第\( j \)维特征的均值，\( \sigma^j \)是其标准差。<br>\[ \bar{x}^j = \frac{1}{N}\sum_{i=1}^N x_i^j \]<br>\[ \sigma^j = \sqrt{\frac{1}{N-1}\sum_{i=1}^N (x_i^j - \bar{x}^j)^2} \]<br>若\( \sigma^j = 0 \)，则所有样本第\( j \)维特征的元素相同，第\( j \)维特征对样本分类没有贡献，不用归一化，其系数为零（选择\( \mathbf{w} \)和\( w_0 \)的初始值全为零）。<br>对样本集\( \lbrace\mathbf{z}_i, t_i \rbrace_{i=1}^N \)，学习LR分类器，假设分类器为<br>\[ y = f(\mathbf{z}) = g(\mathbf{\theta}^T\mathbf{z} + \theta_0) = \frac{1}{1 + \exp\lbrace -(\mathbf{\theta}^T\mathbf{z} + \theta_0)\rbrace} \]<br>将上面的\( \mathbf{z} \)与\( \mathbf{x} \)的关系式\( z^j = \frac{x^j - \bar{x}^j}{\sigma^j} \)代入，得到<br>\[ y = f(\mathbf{x}) = \frac{1}{\displaystyle 1 + \exp\left\lbrace -\left( \sum_{j=1}^k \frac{\theta_j}{\sigma^j} x^j + \theta_0 - \sum_{j=1}^k \frac{\theta_j}{\sigma^j} \bar{x}^j \right) \right\rbrace} \]<br>那么，可以得到原始样本集的LR分类器系数<br>\[ w_j = \frac{\theta_j}{\sigma^j}, \qquad j = 1,2,\dots,k \]<br>\[ w_0 = \theta_0 - \sum_{j=1}^k w_j \bar{x}^j \]</p>
+<p>在训练LR分类器时，数据归一化技术有一些特殊的优势。</p>
 <ul>
-<li>逻辑回归</li>
-<li>支持向量机</li>
-<li>TODO：待添加</li>
+<li>归一化后，样本每一维特征的值基本满足标准正态分布\( N(0, 1) \)，在学习LR分类参数时方便处理。</li>
+<li>提高标准差较大维度的分类系数的准确度。若\( \sigma^j \)很大，则\( w_j \)较小；（不经过数据归一化）直接求取\( w_j \)时，\( w_j \)的变化受迭代步长\( \alpha \)制约。</li>
+<li>归一化后，每一维特征的梯度比原始的梯度小很多（梯度下降法迭代步骤中，\( z^j \)的幅值比\( x^j \)的幅值小很多），系数的更新幅度变小，更容易找到精确解。</li>
+<li>归一化后，系数的初始值全设为零，相对合理；在原始情况下，初始值的选取通常没有统一的准则。</li>
 </ul>
-<h2 id="Linux系统">Linux系统</h2>
-<p>从本科开始，我就比较迷恋Linux，感觉那是技术大牛（像黑客）才能玩转的东西。随着Linux系统（主要是Ubuntu）的平民化，我也跨入了Linux乐园。最早接触的是Ubuntu和openSuSE，因为这两个系统安装比较简单，能够适应我当时的水平。后来逐渐发现，用Linux跟黑客完全不是一回事。时间久了，我的黑客梦也破灭了，不再捣鼓Linux编程和内核的东西。读研究生后，因为研究方向对Windows的依赖性不强，我重拾Linux，是Linux Mint系统。受一篇帖子的启发（时间久了，不记得是哪一篇），我不再想着研究Linux内核和编程等，而专注于使用Linux提高工作效率。两年下来，我也积攒了一下Linux使用经验，在此记录下来，以免忘记后查阅的麻烦。</p>
-<p>博客里记录的Linux使用技巧有以下几类：</p>
-<ul>
-<li>基本Shell命令</li>
-<li>待添加</li>
-</ul>
-<h2 id="结束语">结束语</h2>
-<p>这是我第一次专注写博客，希望在几年后，能通过这个站点回忆起现在的心情。</p>
+<p>关于LR分类器的总结至此结束，我希望能够与各位同仁探讨交流。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -121,16 +125,21 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/write-anywhere/">随笔</a>
+  <a class="article-category-link" href="/categories/machine-learning/">机器学习</a>
 </div>
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/分类/">分类</a><a href="/tags/梯度下降法/">梯度下降法</a>
+  </div>
 
 </div>
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://sovix.github.io/2014/10/05/Before-All/" data-title="写在最前面 | Sovix&#39;s Home" data-tsina="null" class="share clearfix">
+  <div data-url="http://sovix.github.io/2014/10/05/Logistic-Regression-I/" data-title="逻辑回归（原理） | Sovix&#39;s Home" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -139,14 +148,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/10/05/Logistic-Regression-I/" title="逻辑回归（原理）">
-  <strong>上一篇：</strong><br/>
-  <span>
-  逻辑回归（原理）</span>
+
+<div class="next">
+<a href="/2014/10/05/Before-All/"  title="写在最前面">
+ <strong>下一篇：</strong><br/> 
+ <span>写在最前面
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -162,7 +171,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#机器学习"><span class="toc-number">1.</span> <span class="toc-text">机器学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux系统"><span class="toc-number">2.</span> <span class="toc-text">Linux系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束语"><span class="toc-number">3.</span> <span class="toc-text">结束语</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LR原理"><span class="toc-number">1.</span> <span class="toc-text">LR原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#梯度下降法"><span class="toc-number">2.</span> <span class="toc-text">梯度下降法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据归一化"><span class="toc-number">3.</span> <span class="toc-text">数据归一化</span></a></li></ol>
  
   </div>
 
