@@ -1,0 +1,466 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>算法题目（一） | Sovix&#39;s Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="sjlxj">
+    
+    <meta name="description" content="在找工作之际，我参加过几场笔试，大部分笔试题都是与算法相关的，仅有小部分涉及机器学习模型和方法。此外，为了好好准备笔试，我还专门找了历年的笔试题练手。在我看过的题目中，有些题目设计的相当巧妙，解决思路也是别出心裁。在此，我将这些题目记录下来，用来启发自己略显僵化的思维。">
+    
+    
+    
+    
+    <link rel="alternative" href="/atom.xml" title="Sovix&#39;s Home" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/cactus.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/cactus.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Sovix&#39;s Home" title="Sovix&#39;s Home"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Sovix&#39;s Home">Sovix&#39;s Home</a></h1>
+				<h2 class="blog-motto">见证过去的岁月！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+                        
+                        <form class="search">
+                            <input type="text" id="st-search-input" maxlength="20" placeholder="Search">
+                        </form>
+					    
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/10/07/Writing-Test-I/" title="算法题目（一）" itemprop="url">算法题目（一）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://sovix.github.io/about" title="sjlxj" target="_blank" itemprop="author">sjlxj</a>
+		
+  <p class="article-time">
+    <time datetime="2014-10-07T07:08:02.000Z" itemprop="datePublished"> 发表于 2014-10-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目一"><span class="toc-number">1.</span> <span class="toc-text">题目一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目二"><span class="toc-number">2.</span> <span class="toc-text">题目二</span></a></li></ol>
+		
+		</div>
+		
+		<p>在找工作之际，我参加过几场笔试，大部分笔试题都是与算法相关的，仅有小部分涉及机器学习模型和方法。此外，为了好好准备笔试，我还专门找了历年的笔试题练手。在我看过的题目中，有些题目设计的相当巧妙，解决思路也是别出心裁。在此，我将这些题目记录下来，用来启发自己略显僵化的思维。<br><a id="more"></a></p>
+<h2 id="题目一">题目一</h2>
+<p>题：有一个长度为<strong>n</strong>数组<strong>A</strong>，为A[1], A[2], …, A[n]，希望得到长度为<strong>n</strong>的数组<strong>B</strong>，使B[i] = A[1]*…*A[i-1]*A[i+1]*…*A[n]，且A[1]*A[2]*…*A[n] &lt; 2170786342381458。要求设计的算法满足：</p>
+<ul>
+<li>算法不能使用除法；</li>
+<li>时间复杂度为<strong>O(n)</strong>；</li>
+<li>空间复杂度为<strong>O(1)</strong>。</li>
+</ul>
+<p>解：由于不能用除法，所以数组<strong>B</strong>只能通过乘法求解。根据题目要求，可以看出<strong>B</strong>中元素的特点  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">B[<span class="number">1</span>] =   <span class="number">1</span>  * A[<span class="number">2</span>] * A[<span class="number">3</span>] *<span class="keyword">...</span>* A[n]  </div><div class="line">B[<span class="number">2</span>] = A[<span class="number">1</span>] *   <span class="number">1</span>  * A[<span class="number">3</span>] *<span class="keyword">...</span>* A[n]  </div><div class="line"><span class="keyword">...</span>  </div><div class="line">B[n] = A[<span class="number">1</span>] * A[<span class="number">2</span>] *<span class="keyword">...</span>* A[n-<span class="number">1</span>] * <span class="number">1</span></div></pre></td></tr></table></figure>
+
+<p>可以看出，<strong>B[1]…B[n]表达式在1之前的部分存在迭代关系，且B[n]…B[1]在1之后的部分也存在迭代关系</strong>。那么，可以通过两趟迭代求解数组<strong>B</strong>。<br>第一趟迭代</p>
+<figure class="highlight [c++]"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 初值：B[1] = 1  </span></div><div class="line"><span class="constant">B[i]</span> = B[i-<span class="number">1</span>] * A[i-<span class="number">1</span>]</div></pre></td></tr></table></figure>
+
+<p>第二趟迭代</p>
+<figure class="highlight [c++]"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 初值：val = A[n]  </span></div><div class="line">B[i-<span class="number">1</span>] = B[i-<span class="number">1</span>] * <span class="keyword">val</span></div><div class="line"><span class="keyword">val</span> = <span class="keyword">val</span> * A[i-<span class="number">1</span>]</div></pre></td></tr></table></figure>
+
+<p>根据上述迭代过程，乘法次数为(n-1) + 2(n-1) = 3n-3，使用一个变量val，因此时间复杂度是<strong>O(n)</strong>，空间复杂度是<strong>O(1)</strong>。<br>Java代码如下</p>
+<figure class="highlight [java]"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span>[] getB(<span class="keyword">double</span>[] A, <span class="keyword">double</span>[] B) {</div><div class="line">	B[<span class="number">0</span>] = <span class="number">1.0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i &lt; A.<span class="built_in">length</span>; i++) {</div><div class="line">    	B[i] = B[i-<span class="number">1</span>] * A[i-<span class="number">1</span>];</div><div class="line">    }</div><div class="line">    <span class="keyword">double</span> val = A[A.<span class="built_in">length</span> - <span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=A.<span class="built_in">length</span>-<span class="number">2</span>; i &gt; <span class="number">0</span>; i--) {</div><div class="line">    	B[i] = B[i] * val;</div><div class="line">        val = val * A[i];</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> B;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h2 id="题目二">题目二</h2>
+<p>题：有一个长度为<strong>n</strong>的数组<strong>A</strong>，数组元素是<strong>1</strong>到<strong>n</strong>的整数，其中有的整数出现多次，有的整数没有出现，设计算法找出<strong>A</strong>中每个整数出现的次数，要求时间复杂度为<strong>O(n)</strong>，空间复杂度为<strong>O(1)</strong>。<br>解：算法要求输出<strong>A</strong>中每个整数出现次数，需要<strong>O(n)</strong>的空间。但是题目要求的空间复杂度为<strong>O(1)</strong>，那么算法的输出必须借用数组<strong>A</strong>才可能实现，即算法的目的是将数组<strong>A</strong>转化为统计<strong>A</strong>中整数出现次数的新数组。<br>如何用长度为<strong>n</strong>的数组记录<strong>1</strong>到<strong>n</strong>个整数出现次数？最简单的方法是<strong>A[i]记录整数i出现次数（i=1,2,…,n）</strong>。由于<strong>A</strong>中元素是<strong>1</strong>到<strong>n</strong>的整数，为了避免整数元素与出现次数混淆，我们对出现次数取负，遍历结束后，再取次数的绝对值作为输出结果。<br>算法流程：</p>
+<ol>
+<li>i = 1;</li>
+<li>若A[i] &lt;= 0, 转到3; 否则, 记j = A[i], A[i] = 0. 若A[j] &lt;= 0, A[j]—, 转到3; 否则, A[i] = A[j], A[j] = -1, 继续执行2; </li>
+<li>i++. 若i &lt;= n, 转到2; 否则，转到4;</li>
+<li>i = 1,2, …, n, A[i] = -A[i].  </li>
+</ol>
+<p>算法思路是：先判断A[i]是否是原始数值。若A[i]是数值i的出现次数（零或负整数），那么转到下一个元素A[i+1]；若A[i]是原始数值（正整数），记j = A[i]，将A[i]赋为零，判断A[j]是否是数值j的出现次数。若A[j]是数值j的出现次数（零或负整数），那么更新A[j]，再转到下一个元素A[i+1]；若A[j]是原始数值（正整数），那么将A[j]的值赋给A[i]，将j出现的次数A[j]赋为-1，再转到A[i]进行判断。<br>算法在最坏的情况下，比较的次数是2n + (n-1) = 3n-1，使用一个变量j，因此时间复杂度是<strong>O(n)</strong>，空间复杂度是<strong>O(1)</strong>。<br>Java代码如下</p>
+<figure class="highlight [java]"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">void count(int[] <span class="literal">A</span>) {</div><div class="line">    // Java数组下标从<span class="number">0</span>开始，采用<span class="literal">A</span>[i]记录整数i+<span class="number">1</span>的出现次数</div><div class="line">    for (int i=<span class="number">0</span><span class="comment">; i &lt; A.length; i++) {</span></div><div class="line">        <span class="keyword">if</span> (<span class="literal">A</span>[i] &gt; <span class="number">0</span>) {</div><div class="line">            int j = <span class="literal">A</span>[i]<span class="comment">;</span></div><div class="line">            <span class="literal">A</span>[i] = <span class="number">0</span><span class="comment">;</span></div><div class="line">            <span class="keyword">if</span> (<span class="literal">A</span>[j-<span class="number">1</span>] &lt;= <span class="number">0</span>) {</div><div class="line">                <span class="literal">A</span>[j-<span class="number">1</span>] -= <span class="number">1</span><span class="comment">;</span></div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                <span class="literal">A</span>[i] = <span class="literal">A</span>[j-<span class="number">1</span>]<span class="comment">;</span></div><div class="line">                <span class="literal">A</span>[j-<span class="number">1</span>] = -<span class="number">1</span><span class="comment">;</span></div><div class="line">                i--<span class="comment">;</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span><span class="comment">;</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/algorithm-design/">算法设计</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/算法/">算法</a><a href="/tags/笔试题/">笔试题</a>
+  </div>
+
+</div>
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://sovix.github.io/2014/10/07/Writing-Test-I/" data-title="算法题目（一） | Sovix&#39;s Home" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2014/10/05/Logistic-Regression-I/"  title="逻辑回归（原理）">
+ <strong>下一篇：</strong><br/> 
+ <span>逻辑回归（原理）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目一"><span class="toc-number">1.</span> <span class="toc-text">题目一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目二"><span class="toc-number">2.</span> <span class="toc-text">题目二</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/machine-learning/" title="机器学习">机器学习<sup>1</sup></a></li>
+		
+			<li><a href="/categories/algorithm-design/" title="算法设计">算法设计<sup>1</sup></a></li>
+		
+			<li><a href="/categories/write-anywhere/" title="随笔">随笔<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/笔试题/" title="笔试题">笔试题<sup>1</sup></a></li>
+		
+			<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
+		
+			<li><a href="/tags/梯度下降法/" title="梯度下降法">梯度下降法<sup>1</sup></a></li>
+		
+			<li><a href="/tags/分类/" title="分类">分类<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> I&#39;m graduate student in UCAS. <br/>
+			在这里，有我学习的经历和值得怀念的过去。不论悲伤或喜悦、后悔或满足，逝去的终不再回来，留下的只是记忆角落里的怅然。</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/sovix/cactus" target="_blank" title="Cactus">Cactus</a> © 2014 
+		
+		<a href="http://sovix.github.io/about" target="_blank" title="sjlxj">sjlxj</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"sovix"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa06335cb39171e1f78d5fca3975a4674' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+
+
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+
+
+
+<script type="text/javascript">
+  var Swiftype=window.Swiftype||{};
+  !function(){
+   Swiftype.key="mbPGEFXVwXs8KjLd8ZTy",Swiftype.renderStyle="new_page",Swiftype.resultPageURL="/search/",Swiftype.disableAutocomplete=!0;
+  var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//s.swiftypecdn.com/embed.js";
+  var t=document.getElementsByTagName("script")[0];
+  t.parentNode.insertBefore(e,t)}();
+</script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
+

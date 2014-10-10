@@ -9,9 +9,7 @@
     
     <meta name="author" content="sjlxj">
     
-    <meta name="description" content="前几个月，由于要处理大批量数据，我专门重温了逻辑回归（Logistic Regression，LR）。虽然LR没有取得比较好的效果，我仍然觉得它的潜力巨大且应用前景广泛。作为广义线性分类器的一种，LR一直是实际应用中的“明星”。下面开始介绍LR原理和其实现过程。
-LR原理
-经典的线性回归分类器是\[">
+    <meta name="description" content="前几个月，由于要处理大批量数据，我专门重温了逻辑回归（Logistic Regression，LR）。虽然LR没有取得比较好的效果，我仍然觉得它的潜力巨大且应用前景广泛。作为广义线性分类器的一种，LR一直是实际应用中的“明星”。下面开始介绍LR原理和其实现过程。">
     
     
     
@@ -98,7 +96,7 @@ LR原理
 		
 		</div>
 		
-		<p>前几个月，由于要处理大批量数据，我专门重温了逻辑回归（Logistic Regression，LR）。虽然LR没有取得比较好的效果，我仍然觉得它的潜力巨大且应用前景广泛。作为广义线性分类器的一种，LR一直是实际应用中的“明星”。下面开始介绍LR原理和其实现过程。</p>
+		<p>前几个月，由于要处理大批量数据，我专门重温了逻辑回归（Logistic Regression，LR）。虽然LR没有取得比较好的效果，我仍然觉得它的潜力巨大且应用前景广泛。作为广义线性分类器的一种，LR一直是实际应用中的“明星”。下面开始介绍LR原理和其实现过程。<br><a id="more"></a></p>
 <h2 id="LR原理">LR原理</h2>
 <p>经典的线性回归分类器是<br>\[ y=\mathbf{w}^T \mathbf{x} + w_0 \]<br>对于数据集\( \{\mathbf{x}_i, t_i\}_{i=1}^N \)，其中类别\( t_i \in \{0, 1\} \)，那么LR分类器可以表示为<br>\[ y = f(\mathbf{x}) = g(\mathbf{w}^T\mathbf{x} + w_0) = \frac{1}{1 + \exp\{-(\mathbf{w}^T\mathbf{x} + w_0)\}} \]<br>其中\( g(\mathbf{z})=\frac{1}{1 + e^{-\mathbf{z}}} \)是sigmoid函数。则\( N \)对个样本，其似然函数（likelihood function）为<br>\[ L(\mathbf{w}) = \prod_{i=1}^N y_i^{t_i} (1 - y_i)^{1 - t_i} \]<br>其中\( y_i = f(\mathbf{x}_i) \)。那么我们得到的代价函数（cost function）为似然函数的负对数，再加上对系数的惩罚项，以避免过拟合<br>\[ J(\mathbf{w}) = -\frac{1}{N}\log L(\mathbf{w}) + \frac{\gamma}{2}\Vert\mathbf{w}\Vert^2 \]</p>
 <p>\[ J(\mathbf{w}) = -\frac{1}{N}\sum_{i=1}^N \lbrack t_i \log f(\mathbf{x}_i) + (1 - t_i) \log (1 - f(\mathbf{x}_i)) \rbrack + \frac{\gamma}{2}\sum_{j=1}^k w_j^2 \]<br>上式\( k \)为样本\( \mathbf{x} \)的维度。</p>
@@ -148,6 +146,14 @@ LR原理
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2014/10/07/Writing-Test-I/" title="算法题目（一）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  算法题目（一）</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2014/10/05/Before-All/"  title="写在最前面">
@@ -186,6 +192,8 @@ LR原理
 		
 			<li><a href="/categories/machine-learning/" title="机器学习">机器学习<sup>1</sup></a></li>
 		
+			<li><a href="/categories/algorithm-design/" title="算法设计">算法设计<sup>1</sup></a></li>
+		
 			<li><a href="/categories/write-anywhere/" title="随笔">随笔<sup>1</sup></a></li>
 		
 		</ul>
@@ -196,6 +204,10 @@ LR原理
 <div class="tagslist">
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
+		
+			<li><a href="/tags/笔试题/" title="笔试题">笔试题<sup>1</sup></a></li>
+		
+			<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
 		
 			<li><a href="/tags/梯度下降法/" title="梯度下降法">梯度下降法<sup>1</sup></a></li>
 		
