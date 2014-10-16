@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://sovix.github.io/2014/10/09/Weighting-Scheme/</loc>
+    <lastmod>2014-10-15T13:19:41.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sovix.github.io/2014/10/13/Binary-Tree-I/</loc>
+    <lastmod>2014-10-14T11:54:33.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://sovix.github.io/2014/10/07/Writing-Test-I/</loc>
     <lastmod>2014-10-13T08:12:05.000Z</lastmod>
   </url>

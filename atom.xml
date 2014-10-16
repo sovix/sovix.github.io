@@ -4,7 +4,7 @@
   <subtitle><![CDATA[见证过去的岁月！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://sovix.github.io/"/>
-  <updated>2014-10-13T08:18:16.176Z</updated>
+  <updated>2014-10-16T07:57:33.915Z</updated>
   <id>http://sovix.github.io/</id>
   
   <author>
@@ -13,6 +13,56 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[二叉树遍历]]></title>
+    <link href="http://sovix.github.io/2014/10/13/Binary-Tree-I/"/>
+    <id>http://sovix.github.io/2014/10/13/Binary-Tree-I/</id>
+    <published>2014-10-13T08:24:52.000Z</published>
+    <updated>2014-10-14T11:54:33.000Z</updated>
+    <content type="html"><![CDATA[<p>二叉树是一种非常常见的数据存储结构，在数值查找、排序、遍历访问等方面都有应用。根据树的特点，用于数值查找和排序的二叉树有最大堆和最小堆，这是一类特殊的二叉树。对一般的二叉树而言，所能做的通用操作就是遍历。我在这里详细介绍一下二叉树的遍历。<br><a id="more"></a></p>
+<h2 id="二叉树定义">二叉树定义</h2>
+<p>二叉树，顾名思义，有一个根节点处于树的顶层，且树中每个节点有至多两个子节点。<br>采用Java定义二叉树的节点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Node {</div><div class="line">    <span class="keyword">double</span> value;</div><div class="line">    Node left = <span class="keyword">null</span>;</div><div class="line">    Node right = <span class="keyword">null</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>二叉树有三种遍历方式：前序遍历、中序遍历和后序遍历。</p>
+<h2 id="前序遍历">前序遍历</h2>
+<h2 id="中序遍历">中序遍历</h2>
+<h2 id="后序遍历">后序遍历</h2>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>二叉树是一种非常常见的数据存储结构，在数值查找、排序、遍历访问等方面都有应用。根据树的特点，用于数值查找和排序的二叉树有最大堆和最小堆，这是一类特殊的二叉树。对一般的二叉树而言，所能做的通用操作就是遍历。我在这里详细介绍一下二叉树的遍历。<br>]]>
+    
+    </summary>
+    
+      <category term="二叉树" scheme="http://sovix.github.io/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    
+      <category term="非递归" scheme="http://sovix.github.io/tags/%E9%9D%9E%E9%80%92%E5%BD%92/"/>
+    
+      <category term="算法设计" scheme="http://sovix.github.io/categories/algorithm-design/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[数据量化时的加权策略]]></title>
+    <link href="http://sovix.github.io/2014/10/09/Weighting-Scheme/"/>
+    <id>http://sovix.github.io/2014/10/09/Weighting-Scheme/</id>
+    <published>2014-10-09T07:50:47.000Z</published>
+    <updated>2014-10-15T13:19:41.000Z</updated>
+    <content type="html"><![CDATA[<p>在实际应用中，通常会碰到这样的问题，有一个对象能够用一组相关的属性来描述，如<strong>惠普={服务器，操作系统，PC机，打印机，投影仪}</strong>，需要对这组属性的重要性进行衡量，但是属性是按重要性递减排列的，那么如何合理量化属性的重要性？<br><a id="more"></a></p>
+<h2 id="基数加权">基数加权</h2>
+<h2 id="高斯加权">高斯加权</h2>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在实际应用中，通常会碰到这样的问题，有一个对象能够用一组相关的属性来描述，如<strong>惠普={服务器，操作系统，PC机，打印机，投影仪}</strong>，需要对这组属性的重要性进行衡量，但是属性是按重要性递减排列的，那么如何合理量化属性的重要性？<br>]]>
+    
+    </summary>
+    
+      <category term="加权策略" scheme="http://sovix.github.io/tags/%E5%8A%A0%E6%9D%83%E7%AD%96%E7%95%A5/"/>
+    
+      <category term="数据量化" scheme="http://sovix.github.io/categories/%E6%95%B0%E6%8D%AE%E9%87%8F%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[算法题目（一）]]></title>

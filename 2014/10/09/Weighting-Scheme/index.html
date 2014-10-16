@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>算法题目（一） | Sovix&#39;s Home</title>
+    <title>数据量化时的加权策略 | Sovix&#39;s Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="sjlxj">
     
-    <meta name="description" content="在找工作之际，我参加过几场笔试，大部分笔试题都是与算法相关的，仅有小部分涉及机器学习模型和方法。此外，为了好好准备笔试，我还专门找了历年的笔试题练手。在我看过的题目中，有些题目设计的相当巧妙，解决思路也是别出心裁。在此，我将这些题目记录下来，用来启发自己略显僵化的思维。">
+    <meta name="description" content="在实际应用中，通常会碰到这样的问题，有一个对象能够用一组相关的属性来描述，如惠普={服务器，操作系统，PC机，打印机，投影仪}，需要对这组属性的重要性进行衡量，但是属性是按重要性递减排列的，那么如何合理量化属性的重要性？">
     
     
     
@@ -75,14 +75,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/10/07/Writing-Test-I/" title="算法题目（一）" itemprop="url">算法题目（一）</a>
+      <a href="/2014/10/09/Weighting-Scheme/" title="数据量化时的加权策略" itemprop="url">数据量化时的加权策略</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://sovix.github.io/about" title="sjlxj" target="_blank" itemprop="author">sjlxj</a>
 		
   <p class="article-time">
-    <time datetime="2014-10-07T07:08:02.000Z" itemprop="datePublished"> 发表于 2014-10-07</time>
+    <time datetime="2014-10-09T07:50:47.000Z" itemprop="datePublished"> 发表于 2014-10-09</time>
     
   </p>
 </header>
@@ -92,43 +92,13 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目一"><span class="toc-number">1.</span> <span class="toc-text">题目一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目二"><span class="toc-number">2.</span> <span class="toc-text">题目二</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基数加权"><span class="toc-number">1.</span> <span class="toc-text">基数加权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高斯加权"><span class="toc-number">2.</span> <span class="toc-text">高斯加权</span></a></li></ol>
 		
 		</div>
 		
-		<p>在找工作之际，我参加过几场笔试，大部分笔试题都是与算法相关的，仅有小部分涉及机器学习模型和方法。此外，为了好好准备笔试，我还专门找了历年的笔试题练手。在我看过的题目中，有些题目设计的相当巧妙，解决思路也是别出心裁。在此，我将这些题目记录下来，用来启发自己略显僵化的思维。<br><a id="more"></a></p>
-<h2 id="题目一">题目一</h2>
-<p>题：有一个长度为<strong>n</strong>数组<strong>A</strong>，为A[1], A[2], …, A[n]，希望得到长度为n的数组B，使B[i] = A[1]*…*A[i-1]*A[i+1]*…*A[n]，且A[1]*A[2]*…*A[n] &lt; 2170786342381458。要求设计的算法满足：</p>
-<ul>
-<li>算法不能使用除法；</li>
-<li>时间复杂度为<strong>O(n)</strong>；</li>
-<li>空间复杂度为<strong>O(1)</strong>。</li>
-</ul>
-<p>解：由于不能用除法，所以数组<strong>B</strong>只能通过乘法求解。根据题目要求，可以看出B中元素的特点</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">B[<span class="number">1</span>] =   <span class="number">1</span>  * A[<span class="number">2</span>] * A[<span class="number">3</span>] *...* A[n]  </div><div class="line">B[<span class="number">2</span>] = A[<span class="number">1</span>] *   <span class="number">1</span>  * A[<span class="number">3</span>] *...* A[n]</div><div class="line">...</div><div class="line">B[n] = A[<span class="number">1</span>] * A[<span class="number">2</span>] *...* A[n-<span class="number">1</span>] * <span class="number">1</span></div></pre></td></tr></table></figure>
-
-<p>可以看出，<strong>B[1]…B[n]表达式在1之前的部分存在迭代关系，且B[n]…B[1]在1之后的部分也存在迭代关系</strong>。那么，可以通过两趟迭代求解数组<strong>B</strong>。<br>第一趟迭代</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 初值：B[1] = 1</span></div><div class="line">B[i] = B[i-<span class="number">1</span>] * A[i-<span class="number">1</span>]</div></pre></td></tr></table></figure>
-
-<p>第二趟迭代</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 初值：val = A[n]</span></div><div class="line">B[i-<span class="number">1</span>] = B[i-<span class="number">1</span>] * val</div><div class="line">val = val * A[i-<span class="number">1</span>]</div></pre></td></tr></table></figure>
-
-<p>根据上述迭代过程，乘法次数为(n-1) + 2(n-1) = 3n-3，使用一个变量val，因此时间复杂度是<strong>O(n)</strong>，空间复杂度是<strong>O(1)</strong>。<br>Java代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span>[] getB(<span class="keyword">double</span>[] A, <span class="keyword">double</span>[] B) {</div><div class="line">    B[<span class="number">0</span>] = <span class="number">1.0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i &lt; A.length; i++) {</div><div class="line">    	B[i] = B[i-<span class="number">1</span>] * A[i-<span class="number">1</span>];</div><div class="line">    }</div><div class="line">    <span class="keyword">double</span> val = A[A.length - <span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=A.length-<span class="number">2</span>; i &gt; <span class="number">0</span>; i--) {</div><div class="line">    	B[i] = B[i] * val;</div><div class="line">        val = val * A[i];</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> B;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-
-<h2 id="题目二">题目二</h2>
-<p>题：有一个长度为<strong>n</strong>的数组<strong>A</strong>，数组元素是<strong>1</strong>到<strong>n</strong>的整数，其中有的整数出现多次，有的整数没有出现，设计算法找出A中每个整数出现的次数，要求时间复杂度为<strong>O(n)</strong>，空间复杂度为<strong>O(1)</strong>。<br>解：算法要求输出<strong>A</strong>中每个整数出现次数，需要<strong>O(n)</strong>的空间。但是题目要求的空间复杂度为<strong>O(1)</strong>，那么算法的输出必须借用数组<strong>A</strong>才可能实现，即算法的目的是将数组<strong>A</strong>转化为统计<strong>A</strong>中整数出现次数的新数组。<br>如何用长度为<strong>n</strong>的数组记录<strong>1</strong>到<strong>n</strong>个整数出现次数？最简单的方法是<strong>A[i]记录整数i出现次数</strong>。由于<strong>A</strong>中元素是<strong>1</strong>到<strong>n</strong>的整数，为了避免整数元素与出现次数混淆，我们对出现次数取负，遍历结束后，再取次数的绝对值作为输出结果。<br><strong>算法流程</strong>：</p>
-<ol>
-<li>i = 1;</li>
-<li>若A[i] &lt;= 0, 转到3; 否则, 记j = A[i], A[i] = 0. 若A[j] &lt;= 0, A[j] -= 1, 转到3; 否则, A[i] = A[j], A[j] = -1, 继续执行2;</li>
-<li>i++. 若i &lt;= n, 转到2; 否则，转到4;</li>
-<li>i = 1,2,…,n, A[i] = -A[i].</li>
-</ol>
-<p><strong>算法思路</strong>是：先判断A[i]是否是原始数值。若A[i]是数值i的出现次数（零或负整数），那么转到下一个元素A[i+1]；若A[i]是原始数值（正整数），记j = A[i]，将A[i]赋为零，判断A[j]是否是数值j的出现次数。若A[j]是数值j的出现次数（零或负整数），那么更新A[j]，再转到下一个元素A[i+1]；若A[j]是原始数值（正整数），那么将A[j]的值赋给A[i]，将j出现的次数A[j]赋为-1，再转到A[i]进行判断。<br>算法在最坏的情况下，比较的次数是2n + (n-1) = 3n-1，使用一个变量j，因此时间复杂度是<strong>O(n)</strong>，空间复杂度是<strong>O(1)</strong>。<br>Java代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> count(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="comment">// Java数组下标从0开始，采用A[i]记录整数i+1的出现次数</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; A.length; i++) {</div><div class="line">        <span class="keyword">if</span> (A[i] &gt; <span class="number">0</span>) {</div><div class="line">            <span class="keyword">int</span> j = A[i];</div><div class="line">            A[i] = <span class="number">0</span>;</div><div class="line">            <span class="keyword">if</span> (A[j-<span class="number">1</span>] &lt;= <span class="number">0</span>) {</div><div class="line">                A[j-<span class="number">1</span>] -= <span class="number">1</span>;</div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                A[i] = A[j-<span class="number">1</span>];</div><div class="line">                A[j-<span class="number">1</span>] = -<span class="number">1</span>;</div><div class="line">                i--;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; A.length; i++) {</div><div class="line">    	A[i] = -A[i];</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
+		<p>在实际应用中，通常会碰到这样的问题，有一个对象能够用一组相关的属性来描述，如<strong>惠普={服务器，操作系统，PC机，打印机，投影仪}</strong>，需要对这组属性的重要性进行衡量，但是属性是按重要性递减排列的，那么如何合理量化属性的重要性？<br><a id="more"></a></p>
+<h2 id="基数加权">基数加权</h2>
+<h2 id="高斯加权">高斯加权</h2>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -136,13 +106,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/algorithm-design/">算法设计</a>
+  <a class="article-category-link" href="/categories/数据量化/">数据量化</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/算法/">算法</a><a href="/tags/笔试题/">笔试题</a>
+  <span></span> <a href="/tags/加权策略/">加权策略</a>
   </div>
 
 </div>
@@ -150,7 +120,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://sovix.github.io/2014/10/07/Writing-Test-I/" data-title="算法题目（一） | Sovix&#39;s Home" data-tsina="null" class="share clearfix">
+  <div data-url="http://sovix.github.io/2014/10/09/Weighting-Scheme/" data-title="数据量化时的加权策略 | Sovix&#39;s Home" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -160,18 +130,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/10/09/Weighting-Scheme/" title="数据量化时的加权策略">
+ <a href="/2014/10/13/Binary-Tree-I/" title="二叉树遍历">
   <strong>上一篇：</strong><br/>
   <span>
-  数据量化时的加权策略</span>
+  二叉树遍历</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/10/05/Logistic-Regression-I/"  title="逻辑回归（原理）">
+<a href="/2014/10/07/Writing-Test-I/"  title="算法题目（一）">
  <strong>下一篇：</strong><br/> 
- <span>逻辑回归（原理）
+ <span>算法题目（一）
 </span>
 </a>
 </div>
@@ -190,7 +160,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目一"><span class="toc-number">1.</span> <span class="toc-text">题目一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目二"><span class="toc-number">2.</span> <span class="toc-text">题目二</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基数加权"><span class="toc-number">1.</span> <span class="toc-text">基数加权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高斯加权"><span class="toc-number">2.</span> <span class="toc-text">高斯加权</span></a></li></ol>
  
   </div>
 
@@ -452,6 +422,52 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
 <script src="/js/totop.js"></script>
 
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: ["AMS"],
+        useLabelIds: true
+      },
+      Macros: {
+        hfill: "{}"
+      }
+    },
+    "HTML-CSS": {
+      linebreaks: {
+        automatic: true
+      },
+      scale: 100
+    },
+    SVG: {
+      linebreaks: {
+        automatic: true
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
 
