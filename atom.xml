@@ -4,7 +4,7 @@
   <subtitle><![CDATA[见证过去的岁月！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://sovix.github.io/"/>
-  <updated>2014-10-16T07:57:33.915Z</updated>
+  <updated>2014-10-22T11:20:57.025Z</updated>
   <id>http://sovix.github.io/</id>
   
   <author>
@@ -19,16 +19,44 @@
     <link href="http://sovix.github.io/2014/10/13/Binary-Tree-I/"/>
     <id>http://sovix.github.io/2014/10/13/Binary-Tree-I/</id>
     <published>2014-10-13T08:24:52.000Z</published>
-    <updated>2014-10-14T11:54:33.000Z</updated>
+    <updated>2014-10-20T09:29:13.000Z</updated>
     <content type="html"><![CDATA[<p>二叉树是一种非常常见的数据存储结构，在数值查找、排序、遍历访问等方面都有应用。根据树的特点，用于数值查找和排序的二叉树有最大堆和最小堆，这是一类特殊的二叉树。对一般的二叉树而言，所能做的通用操作就是遍历。我在这里详细介绍一下二叉树的遍历。<br><a id="more"></a></p>
 <h2 id="二叉树定义">二叉树定义</h2>
-<p>二叉树，顾名思义，有一个根节点处于树的顶层，且树中每个节点有至多两个子节点。<br>采用Java定义二叉树的节点</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Node {</div><div class="line">    <span class="keyword">double</span> value;</div><div class="line">    Node left = <span class="keyword">null</span>;</div><div class="line">    Node right = <span class="keyword">null</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>二叉树，顾名思义，有一个根节点处于树的顶层，且树中每个节点有至多两个子节点。如下图，一个包含12个节点的二叉树。 </p>
+<p></p><p style="text-align:center"><img src="/images/bi_tree.png" width="400px" alt="图-1. 二叉树"></p><br>采用Java定义二叉树的节点<p></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Node {</div><div class="line">    String value;</div><div class="line">    Node left = <span class="keyword">null</span>;</div><div class="line">    Node right = <span class="keyword">null</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
 
-<p>二叉树有三种遍历方式：前序遍历、中序遍历和后序遍历。</p>
+<p><strong>left</strong>和<strong>right</strong>分别是当前节点的左孩子和右孩子。若要遍历如<strong>图-1</strong>的二叉树，根据节点的访问顺序，主要有三种方式：前序遍历、中序遍历和后序遍历。三种遍历方式的节点访问顺序为： </p>
+<ul>
+<li>前序遍历： <strong>父节点</strong>，左孩子，右孩子；</li>
+<li>中序遍历： 左孩子，<strong>父节点</strong>，右孩子；</li>
+<li>后序遍历： 左孩子，右孩子，<strong>父节点</strong>；</li>
+</ul>
+<p>下面将详细解说这三种遍历方式。  </p>
 <h2 id="前序遍历">前序遍历</h2>
+<p>前序遍历的访问顺序是：父节点，左孩子，右孩子。</p>
+<p></p><p style="text-align:center"><img src="/images/pre_order.png" width="400px" alt="图-2. 前序遍历二叉树"></p><br><strong>图-2</strong>中的数字代表前序遍历时节点的访问次序。<br>采用递归方式进行前序遍历相对比较简单：先访问根节点，然后递归地遍历左子树，再递归地遍历右子树。<br>前序遍历（递归）的Java代码如下<p></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> PreOrderTraversal(Node T) {</div><div class="line">    <span class="keyword">if</span>(T == <span class="keyword">null</span>) {</div><div class="line">    	<span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    System.out.println(T.value);    <span class="comment">// 访问根节点</span></div><div class="line">    PreOrderTraversal(T.left);      <span class="comment">// 遍历左子树</span></div><div class="line">    PreOrderTraversal(T.right);     <span class="comment">// 遍历右子树</span></div><div class="line">    <span class="keyword">return</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>前序遍历（非递归）的Java代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+
 <h2 id="中序遍历">中序遍历</h2>
+<p>中序遍历的访问顺序是：左孩子，父节点，右孩子。</p>
+<p></p><p style="text-align:center"><img src="/images/in_order.png" width="400px" alt="图-3. 中序遍历二叉树"></p><br><strong>图-3</strong>中的数字代表中序遍历时节点的访问次序。<br>采用递归方式进行中序遍历相对比较简单：先递归地遍历左子树，然后访问根节点，再递归地遍历右子树。<br>中序遍历（递归）的Java代码如下<p></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> InOrderTraversal(Node T) {</div><div class="line">    <span class="keyword">if</span>(T == <span class="keyword">null</span>) {</div><div class="line">    	<span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    InOrderTraversal(T.left);</div><div class="line">    System.out.println(T.value);</div><div class="line">    InOrderTraversal(T.right);</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>中序遍历（非递归）的Java代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+
 <h2 id="后序遍历">后序遍历</h2>
+<p>后序遍历的访问顺序是：左孩子，右孩子，父节点。</p>
+<p></p><p style="text-align:center"><img src="/images/post_order.png" width="400px" alt="图-3. 后序遍历二叉树"></p><br><strong>图-3</strong>中的数字代表后序遍历时节点的访问次序。<br>采用递归方式进行后序遍历相对比较简单：先递归地遍历左子树，然后递归地遍历右子树，最后访问根节点。<br>后序遍历（递归）的Java代码如下<p></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> PostOrderTraversal(Node T) {</div><div class="line">    <span class="keyword">if</span>(T == <span class="keyword">null</span>) {</div><div class="line">    	<span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    PostOrderTraversal(T.left);</div><div class="line">    PostOrderTraversal(T.right);</div><div class="line">    System.out.println(T.value);</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>后序遍历（非递归）的Java代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+
 ]]></content>
     <summary type="html">
     <![CDATA[<p>二叉树是一种非常常见的数据存储结构，在数值查找、排序、遍历访问等方面都有应用。根据树的特点，用于数值查找和排序的二叉树有最大堆和最小堆，这是一类特殊的二叉树。对一般的二叉树而言，所能做的通用操作就是遍历。我在这里详细介绍一下二叉树的遍历。<br>]]>
