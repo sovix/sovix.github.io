@@ -100,15 +100,15 @@
 		
 		<p>二叉树是一种非常常见的数据存储结构，在数值查找、排序、遍历访问等方面都有应用。根据树的特点，用于数值查找和排序的二叉树有最大堆和最小堆，这是一类特殊的二叉树。对一般的二叉树而言，所能做的通用操作就是遍历。我在这里详细介绍一下二叉树的遍历。<br><a id="more"></a></p>
 <h2 id="二叉树定义">二叉树定义</h2>
-<p>二叉树，顾名思义，有一个根节点处于树的顶层，且树中每个节点有至多两个子节点。如下图，一个包含12个节点的二叉树。 </p>
+<p>二叉树，顾名思义，有一个根节点处于树的顶层，且树中每个节点有至多两个子节点。一般，我们称一个节点的左子节点为左孩子，右子节点为右孩子。如下图，一个包含12个节点的二叉树。 </p>
 <p></p><p style="text-align:center"><img src="/images/bi_tree.png" width="400px" alt="图-1. 二叉树"></p><br>采用Java定义二叉树的节点<p></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Node {</div><div class="line">    String value;</div><div class="line">    Node left = <span class="keyword">null</span>;</div><div class="line">    Node right = <span class="keyword">null</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p><strong>left</strong>和<strong>right</strong>分别是当前节点的左孩子和右孩子。若要遍历如<strong>图-1</strong>的二叉树，根据节点的访问顺序，主要有三种方式：前序遍历、中序遍历和后序遍历。三种遍历方式的节点访问顺序为： </p>
 <ul>
-<li>前序遍历： <strong>父节点</strong>，左孩子，右孩子；</li>
-<li>中序遍历： 左孩子，<strong>父节点</strong>，右孩子；</li>
-<li>后序遍历： 左孩子，右孩子，<strong>父节点</strong>；</li>
+<li>前序遍历： <strong>父节点</strong>，左子树，右子树；</li>
+<li>中序遍历： 左子树，<strong>父节点</strong>，右子树；</li>
+<li>后序遍历： 左子树，右子树，<strong>父节点</strong>；</li>
 </ul>
 <p>下面将详细解说这三种遍历方式。  </p>
 <h2 id="前序遍历">前序遍历</h2>
@@ -116,6 +116,11 @@
 <p></p><p style="text-align:center"><img src="/images/pre_order.png" width="400px" alt="图-2. 前序遍历二叉树"></p><br><strong>图-2</strong>中的数字代表前序遍历时节点的访问次序。<br>采用递归方式进行前序遍历相对比较简单：先访问根节点，然后递归地遍历左子树，再递归地遍历右子树。<br>前序遍历（递归）的Java代码如下<p></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> PreOrderTraversal(Node T) {</div><div class="line">    <span class="keyword">if</span>(T == <span class="keyword">null</span>) {</div><div class="line">    	<span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    System.out.println(T.value);    <span class="comment">// 访问根节点</span></div><div class="line">    PreOrderTraversal(T.left);      <span class="comment">// 遍历左子树</span></div><div class="line">    PreOrderTraversal(T.right);     <span class="comment">// 遍历右子树</span></div><div class="line">    <span class="keyword">return</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
 
+<p>有些情况下，需要非递归地实现二叉树的遍历。前序遍历的非递归思路是：</p>
+<ol>
+<li>访问根节点，将根节点入栈；</li>
+<li>若栈顶节点存在左孩子，则访问左孩子并将其入栈；若不存在左孩子，弹出栈顶节点，访问右孩子并将其入栈</li>
+</ol>
 <p>前序遍历（非递归）的Java代码如下</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> PreOrderTraversalNonRecursive(Node T) {</div><div class="line">    List&lt;Node&gt; stack = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    Node pT = T;</div><div class="line">    <span class="keyword">while</span>(pT != <span class="keyword">null</span> || !stack.isEmpty()) {</div><div class="line">        <span class="keyword">if</span>(pT != <span class="keyword">null</span>) {</div><div class="line">            System.out.println(pT.value);</div><div class="line">            stack.add(pT);</div><div class="line">            pT = pT.left;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            pT = stack.remove(stack.size() - <span class="number">1</span>).right;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
 
@@ -165,11 +170,19 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2014/11/25/Linux-Software-I/" title="Linux下JDK配置和Weka安装">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Linux下JDK配置和Weka安装</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2014/10/09/Weighting-Scheme/"  title="数据量化时的加权策略">
+<a href="/2014/10/07/Writing-Test-I/"  title="两道笔试算法题">
  <strong>下一篇：</strong><br/> 
- <span>数据量化时的加权策略
+ <span>两道笔试算法题
 </span>
 </a>
 </div>
@@ -201,7 +214,9 @@
 	<p class="asidetitle">分类</p>
 		<ul>
 		
-			<li><a href="/categories/数据量化/" title="数据量化">数据量化<sup>1</sup></a></li>
+			<li><a href="/categories/python/mongodb/" title="mongodb">mongodb<sup>0</sup></a></li>
+		
+			<li><a href="/categories/python/" title="python">python<sup>0</sup></a></li>
 		
 			<li><a href="/categories/machine-learning/" title="机器学习">机器学习<sup>1</sup></a></li>
 		
@@ -218,8 +233,6 @@
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/加权策略/" title="加权策略">加权策略<sup>1</sup></a></li>
-		
 			<li><a href="/tags/非递归/" title="非递归">非递归<sup>1</sup></a></li>
 		
 			<li><a href="/tags/二叉树/" title="二叉树">二叉树<sup>1</sup></a></li>
@@ -231,6 +244,8 @@
 			<li><a href="/tags/梯度下降法/" title="梯度下降法">梯度下降法<sup>1</sup></a></li>
 		
 			<li><a href="/tags/分类/" title="分类">分类<sup>1</sup></a></li>
+		
+			<li><a href="/tags/pymongo/" title="pymongo">pymongo<sup>0</sup></a></li>
 		
 		</ul>
 </div>
@@ -274,7 +289,7 @@
 		
 		
 	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/sovix/cactus" target="_blank" title="Cactus">Cactus</a> © 2014 
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/sovix/cactus" target="_blank" title="Cactus">Cactus</a> © 2015 
 		
 		<a href="http://sovix.github.io/about" target="_blank" title="sjlxj">sjlxj</a>
 		

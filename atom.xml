@@ -4,7 +4,7 @@
   <subtitle><![CDATA[见证过去的岁月！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://sovix.github.io/"/>
-  <updated>2014-10-24T01:46:14.213Z</updated>
+  <updated>2015-04-28T15:38:26.844Z</updated>
   <id>http://sovix.github.io/</id>
   
   <author>
@@ -15,22 +15,39 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Linux下JDK配置和Weka安装]]></title>
+    <link href="http://sovix.github.io/2014/11/25/Linux-Software-I/"/>
+    <id>http://sovix.github.io/2014/11/25/Linux-Software-I/</id>
+    <published>2014-11-25T01:55:24.000Z</published>
+    <updated>2015-04-28T15:35:45.000Z</updated>
+    <content type="html"><![CDATA[<p>我用Linux系统已经有三年了，有些工作也是在这个系统下完成的。在研究开发中，有许多软件工具需要用到，如Weka、Latex、Cytoscape等。与Windows系统不同，有些软件需要详细的配置。这虽然是小节，而且网上到处都是，却很花费时间和精力。在此，我将已经用过的软件的安装配置过程记录下来，方便以后查阅。</p>
+<h2 id="JDK的安装与配置">JDK的安装与配置</h2>
+<h2 id="Weka的安装与配置">Weka的安装与配置</h2>
+<h2 id="小结">小结</h2>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>我用Linux系统已经有三年了，有些工作也是在这个系统下完成的。在研究开发中，有许多软件工具需要用到，如Weka、Latex、Cytoscape等。与Windows系统不同，有些软件需要详细的配置。这虽然是小节，而且网上到处都是，却很花费时间和精力。在此，我将已经用过的软件]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[二叉树遍历]]></title>
     <link href="http://sovix.github.io/2014/10/13/Binary-Tree-I/"/>
     <id>http://sovix.github.io/2014/10/13/Binary-Tree-I/</id>
     <published>2014-10-13T08:24:52.000Z</published>
-    <updated>2014-10-23T06:32:19.000Z</updated>
+    <updated>2014-10-28T08:09:27.000Z</updated>
     <content type="html"><![CDATA[<p>二叉树是一种非常常见的数据存储结构，在数值查找、排序、遍历访问等方面都有应用。根据树的特点，用于数值查找和排序的二叉树有最大堆和最小堆，这是一类特殊的二叉树。对一般的二叉树而言，所能做的通用操作就是遍历。我在这里详细介绍一下二叉树的遍历。<br><a id="more"></a></p>
 <h2 id="二叉树定义">二叉树定义</h2>
-<p>二叉树，顾名思义，有一个根节点处于树的顶层，且树中每个节点有至多两个子节点。如下图，一个包含12个节点的二叉树。 </p>
+<p>二叉树，顾名思义，有一个根节点处于树的顶层，且树中每个节点有至多两个子节点。一般，我们称一个节点的左子节点为左孩子，右子节点为右孩子。如下图，一个包含12个节点的二叉树。 </p>
 <p></p><p style="text-align:center"><img src="/images/bi_tree.png" width="400px" alt="图-1. 二叉树"></p><br>采用Java定义二叉树的节点<p></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Node {</div><div class="line">    String value;</div><div class="line">    Node left = <span class="keyword">null</span>;</div><div class="line">    Node right = <span class="keyword">null</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p><strong>left</strong>和<strong>right</strong>分别是当前节点的左孩子和右孩子。若要遍历如<strong>图-1</strong>的二叉树，根据节点的访问顺序，主要有三种方式：前序遍历、中序遍历和后序遍历。三种遍历方式的节点访问顺序为： </p>
 <ul>
-<li>前序遍历： <strong>父节点</strong>，左孩子，右孩子；</li>
-<li>中序遍历： 左孩子，<strong>父节点</strong>，右孩子；</li>
-<li>后序遍历： 左孩子，右孩子，<strong>父节点</strong>；</li>
+<li>前序遍历： <strong>父节点</strong>，左子树，右子树；</li>
+<li>中序遍历： 左子树，<strong>父节点</strong>，右子树；</li>
+<li>后序遍历： 左子树，右子树，<strong>父节点</strong>；</li>
 </ul>
 <p>下面将详细解说这三种遍历方式。  </p>
 <h2 id="前序遍历">前序遍历</h2>
@@ -38,6 +55,11 @@
 <p></p><p style="text-align:center"><img src="/images/pre_order.png" width="400px" alt="图-2. 前序遍历二叉树"></p><br><strong>图-2</strong>中的数字代表前序遍历时节点的访问次序。<br>采用递归方式进行前序遍历相对比较简单：先访问根节点，然后递归地遍历左子树，再递归地遍历右子树。<br>前序遍历（递归）的Java代码如下<p></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> PreOrderTraversal(Node T) {</div><div class="line">    <span class="keyword">if</span>(T == <span class="keyword">null</span>) {</div><div class="line">    	<span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    System.out.println(T.value);    <span class="comment">// 访问根节点</span></div><div class="line">    PreOrderTraversal(T.left);      <span class="comment">// 遍历左子树</span></div><div class="line">    PreOrderTraversal(T.right);     <span class="comment">// 遍历右子树</span></div><div class="line">    <span class="keyword">return</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
 
+<p>有些情况下，需要非递归地实现二叉树的遍历。前序遍历的非递归思路是：</p>
+<ol>
+<li>访问根节点，将根节点入栈；</li>
+<li>若栈顶节点存在左孩子，则访问左孩子并将其入栈；若不存在左孩子，弹出栈顶节点，访问右孩子并将其入栈</li>
+</ol>
 <p>前序遍历（非递归）的Java代码如下</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> PreOrderTraversalNonRecursive(Node T) {</div><div class="line">    List&lt;Node&gt; stack = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    Node pT = T;</div><div class="line">    <span class="keyword">while</span>(pT != <span class="keyword">null</span> || !stack.isEmpty()) {</div><div class="line">        <span class="keyword">if</span>(pT != <span class="keyword">null</span>) {</div><div class="line">            System.out.println(pT.value);</div><div class="line">            stack.add(pT);</div><div class="line">            pT = pT.left;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            pT = stack.remove(stack.size() - <span class="number">1</span>).right;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
 
@@ -72,32 +94,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[数据量化时的加权策略]]></title>
-    <link href="http://sovix.github.io/2014/10/09/Weighting-Scheme/"/>
-    <id>http://sovix.github.io/2014/10/09/Weighting-Scheme/</id>
-    <published>2014-10-09T07:50:47.000Z</published>
-    <updated>2014-10-15T13:19:41.000Z</updated>
-    <content type="html"><![CDATA[<p>在实际应用中，通常会碰到这样的问题，有一个对象能够用一组相关的属性来描述，如<strong>惠普={服务器，操作系统，PC机，打印机，投影仪}</strong>，需要对这组属性的重要性进行衡量，但是属性是按重要性递减排列的，那么如何合理量化属性的重要性？<br><a id="more"></a></p>
-<h2 id="基数加权">基数加权</h2>
-<h2 id="高斯加权">高斯加权</h2>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>在实际应用中，通常会碰到这样的问题，有一个对象能够用一组相关的属性来描述，如<strong>惠普={服务器，操作系统，PC机，打印机，投影仪}</strong>，需要对这组属性的重要性进行衡量，但是属性是按重要性递减排列的，那么如何合理量化属性的重要性？<br>]]>
-    
-    </summary>
-    
-      <category term="加权策略" scheme="http://sovix.github.io/tags/%E5%8A%A0%E6%9D%83%E7%AD%96%E7%95%A5/"/>
-    
-      <category term="数据量化" scheme="http://sovix.github.io/categories/%E6%95%B0%E6%8D%AE%E9%87%8F%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[算法题目（一）]]></title>
+    <title><![CDATA[两道笔试算法题]]></title>
     <link href="http://sovix.github.io/2014/10/07/Writing-Test-I/"/>
     <id>http://sovix.github.io/2014/10/07/Writing-Test-I/</id>
     <published>2014-10-07T07:08:02.000Z</published>
-    <updated>2014-10-13T08:12:05.000Z</updated>
+    <updated>2015-04-28T15:36:24.000Z</updated>
     <content type="html"><![CDATA[<p>在找工作之际，我参加过几场笔试，大部分笔试题都是与算法相关的，仅有小部分涉及机器学习模型和方法。此外，为了好好准备笔试，我还专门找了历年的笔试题练手。在我看过的题目中，有些题目设计的相当巧妙，解决思路也是别出心裁。在此，我将这些题目记录下来，用来启发自己略显僵化的思维。<br><a id="more"></a></p>
 <h2 id="题目一">题目一</h2>
 <p>题：有一个长度为<strong>n</strong>数组<strong>A</strong>，为A[1], A[2], …, A[n]，希望得到长度为n的数组B，使B[i] = A[1]*…*A[i-1]*A[i+1]*…*A[n]，且A[1]*A[2]*…*A[n] &lt; 2170786342381458。要求设计的算法满足：</p>
@@ -146,11 +147,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[逻辑回归（原理）]]></title>
+    <title><![CDATA[逻辑回归（Logistic Regression）]]></title>
     <link href="http://sovix.github.io/2014/10/05/Logistic-Regression-I/"/>
     <id>http://sovix.github.io/2014/10/05/Logistic-Regression-I/</id>
     <published>2014-10-05T11:47:48.000Z</published>
-    <updated>2014-10-08T02:56:55.000Z</updated>
+    <updated>2015-04-28T15:33:41.000Z</updated>
     <content type="html"><![CDATA[<p>前几个月，由于要处理大批量数据，我专门重温了逻辑回归（Logistic Regression，LR）。虽然LR没有取得比较好的效果，我仍然觉得它的潜力巨大且应用前景广泛。作为广义线性分类器的一种，LR一直是实际应用中的“明星”。下面开始介绍LR原理和其实现过程。<br><a id="more"></a></p>
 <h2 id="LR原理">LR原理</h2>
 <p>经典的线性回归分类器是<br>\[ y=\mathbf{w}^T \mathbf{x} + w_0 \]<br>对于数据集\( \{\mathbf{x}_i, t_i\}_{i=1}^N \)，其中类别\( t_i \in \{0, 1\} \)，那么LR分类器可以表示为<br>\[ y = f(\mathbf{x}) = g(\mathbf{w}^T\mathbf{x} + w_0) = \frac{1}{1 + \exp\{-(\mathbf{w}^T\mathbf{x} + w_0)\}} \]<br>其中\( g(\mathbf{z})=\frac{1}{1 + e^{-\mathbf{z}}} \)是sigmoid函数。则\( N \)对个样本，其似然函数（likelihood function）为<br>\[ L(\mathbf{w}) = \prod_{i=1}^N y_i^{t_i} (1 - y_i)^{1 - t_i} \]<br>其中\( y_i = f(\mathbf{x}_i) \)。那么我们得到的代价函数（cost function）为似然函数的负对数，再加上对系数的惩罚项，以避免过拟合<br>\[ J(\mathbf{w}) = -\frac{1}{N}\log L(\mathbf{w}) + \frac{\gamma}{2}\Vert\mathbf{w}\Vert^2 \]</p>

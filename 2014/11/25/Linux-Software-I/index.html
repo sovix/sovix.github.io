@@ -6,12 +6,12 @@
   
     <meta name="baidu-site-verification" content="0y9IqiZJ9n" />
     <meta name="google-site-verification" content="2G82lXO_BKPeyXVT9LEZI6x9MaUOqIVvc6oGZ-W8wy4" />
-    <title>数据量化时的加权策略 | Sovix&#39;s Home</title>
+    <title>Linux下JDK配置和Weka安装 | Sovix&#39;s Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="sjlxj">
     
-    <meta name="description" content="在实际应用中，通常会碰到这样的问题，有一个对象能够用一组相关的属性来描述，如惠普={服务器，操作系统，PC机，打印机，投影仪}，需要对这组属性的重要性进行衡量，但是属性是按重要性递减排列的，那么如何合理量化属性的重要性？">
+    <meta name="description" content="我用Linux系统已经有三年了，有些工作也是在这个系统下完成的。在研究开发中，有许多软件工具需要用到，如Weka、Latex、Cytoscape等。与Windows系统不同，有些软件需要详细的配置。这虽然是小节，而且网上到处都是，却很花费时间和精力。在此，我将已经用过的软件的安装配置过程记录下来，方">
     
     
     
@@ -77,14 +77,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/10/09/Weighting-Scheme/" title="数据量化时的加权策略" itemprop="url">数据量化时的加权策略</a>
+      <a href="/2014/11/25/Linux-Software-I/" title="Linux下JDK配置和Weka安装" itemprop="url">Linux下JDK配置和Weka安装</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://sovix.github.io/about" title="sjlxj" target="_blank" itemprop="author">sjlxj</a>
 		
   <p class="article-time">
-    <time datetime="2014-10-09T07:50:47.000Z" itemprop="datePublished"> 发表于 2014-10-09</time>
+    <time datetime="2014-11-25T01:55:24.000Z" itemprop="datePublished"> 发表于 2014-11-25</time>
     
   </p>
 </header>
@@ -94,35 +94,26 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基数加权"><span class="toc-number">1.</span> <span class="toc-text">基数加权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高斯加权"><span class="toc-number">2.</span> <span class="toc-text">高斯加权</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JDK的安装与配置"><span class="toc-number">1.</span> <span class="toc-text">JDK的安装与配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Weka的安装与配置"><span class="toc-number">2.</span> <span class="toc-text">Weka的安装与配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li></ol>
 		
 		</div>
 		
-		<p>在实际应用中，通常会碰到这样的问题，有一个对象能够用一组相关的属性来描述，如<strong>惠普={服务器，操作系统，PC机，打印机，投影仪}</strong>，需要对这组属性的重要性进行衡量，但是属性是按重要性递减排列的，那么如何合理量化属性的重要性？<br><a id="more"></a></p>
-<h2 id="基数加权">基数加权</h2>
-<h2 id="高斯加权">高斯加权</h2>
+		<p>我用Linux系统已经有三年了，有些工作也是在这个系统下完成的。在研究开发中，有许多软件工具需要用到，如Weka、Latex、Cytoscape等。与Windows系统不同，有些软件需要详细的配置。这虽然是小节，而且网上到处都是，却很花费时间和精力。在此，我将已经用过的软件的安装配置过程记录下来，方便以后查阅。</p>
+<h2 id="JDK的安装与配置">JDK的安装与配置</h2>
+<h2 id="Weka的安装与配置">Weka的安装与配置</h2>
+<h2 id="小结">小结</h2>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/数据量化/">数据量化</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/加权策略/">加权策略</a>
-  </div>
 
 </div>
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://sovix.github.io/2014/10/09/Weighting-Scheme/" data-title="数据量化时的加权策略 | Sovix&#39;s Home" data-tsina="null" class="share clearfix">
+  <div data-url="http://sovix.github.io/2014/11/25/Linux-Software-I/" data-title="Linux下JDK配置和Weka安装 | Sovix&#39;s Home" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -131,19 +122,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/10/13/Binary-Tree-I/" title="二叉树遍历">
-  <strong>上一篇：</strong><br/>
-  <span>
-  二叉树遍历</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/10/07/Writing-Test-I/"  title="算法题目（一）">
+<a href="/2014/10/13/Binary-Tree-I/"  title="二叉树遍历">
  <strong>下一篇：</strong><br/> 
- <span>算法题目（一）
+ <span>二叉树遍历
 </span>
 </a>
 </div>
@@ -162,7 +145,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基数加权"><span class="toc-number">1.</span> <span class="toc-text">基数加权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高斯加权"><span class="toc-number">2.</span> <span class="toc-text">高斯加权</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JDK的安装与配置"><span class="toc-number">1.</span> <span class="toc-text">JDK的安装与配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Weka的安装与配置"><span class="toc-number">2.</span> <span class="toc-text">Weka的安装与配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li></ol>
  
   </div>
 
@@ -175,7 +158,9 @@
 	<p class="asidetitle">分类</p>
 		<ul>
 		
-			<li><a href="/categories/数据量化/" title="数据量化">数据量化<sup>1</sup></a></li>
+			<li><a href="/categories/python/mongodb/" title="mongodb">mongodb<sup>0</sup></a></li>
+		
+			<li><a href="/categories/python/" title="python">python<sup>0</sup></a></li>
 		
 			<li><a href="/categories/machine-learning/" title="机器学习">机器学习<sup>1</sup></a></li>
 		
@@ -192,8 +177,6 @@
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/加权策略/" title="加权策略">加权策略<sup>1</sup></a></li>
-		
 			<li><a href="/tags/非递归/" title="非递归">非递归<sup>1</sup></a></li>
 		
 			<li><a href="/tags/二叉树/" title="二叉树">二叉树<sup>1</sup></a></li>
@@ -205,6 +188,8 @@
 			<li><a href="/tags/梯度下降法/" title="梯度下降法">梯度下降法<sup>1</sup></a></li>
 		
 			<li><a href="/tags/分类/" title="分类">分类<sup>1</sup></a></li>
+		
+			<li><a href="/tags/pymongo/" title="pymongo">pymongo<sup>0</sup></a></li>
 		
 		</ul>
 </div>
@@ -248,7 +233,7 @@
 		
 		
 	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/sovix/cactus" target="_blank" title="Cactus">Cactus</a> © 2014 
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/sovix/cactus" target="_blank" title="Cactus">Cactus</a> © 2015 
 		
 		<a href="http://sovix.github.io/about" target="_blank" title="sjlxj">sjlxj</a>
 		
@@ -424,52 +409,6 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
 <script src="/js/totop.js"></script>
 
-
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: ["AMS"],
-        useLabelIds: true
-      },
-      Macros: {
-        hfill: "{}"
-      }
-    },
-    "HTML-CSS": {
-      linebreaks: {
-        automatic: true
-      },
-      scale: 100
-    },
-    SVG: {
-      linebreaks: {
-        automatic: true
-      }
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 
 
