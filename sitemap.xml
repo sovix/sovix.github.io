@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://sovix.github.io/2014/10/13/Binary-Tree-I/</loc>
+    <lastmod>2015-04-29T03:21:49.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://sovix.github.io/2014/10/07/Writing-Test-I/</loc>
     <lastmod>2015-04-28T15:36:24.000Z</lastmod>
   </url>
@@ -14,11 +19,6 @@
   <url>
     <loc>http://sovix.github.io/2014/10/05/Logistic-Regression-I/</loc>
     <lastmod>2015-04-28T15:33:41.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://sovix.github.io/2014/10/13/Binary-Tree-I/</loc>
-    <lastmod>2014-10-28T08:09:27.000Z</lastmod>
   </url>
   
   <url>
